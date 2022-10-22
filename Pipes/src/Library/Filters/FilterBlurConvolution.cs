@@ -12,6 +12,7 @@ namespace CompAndDel.Filters
     public class FilterBlurConvolution : IFilter
     {
         protected int[,] kernel;
+        CustomKernel customkernel = new CustomKernel();
         protected int complement, divider;
 
         /// <summary>
@@ -20,21 +21,22 @@ namespace CompAndDel.Filters
         /// </summary>
         public FilterBlurConvolution()
         {
-            this.kernel = new int[3, 3];
+            //this.kernel = new int[3, 3];
+            this.kernel = customkernel.customkernel;
             this.complement = 0;
             this.divider = 9;
-            for (int x = 0; x < 3; x++)
+            /*for (int x = 0; x < 3; x++)
             {
                 for (int y = 0; y < 3; y++)
                 {
                     kernel[x, y] = 1;
                 }
-            }
+            }*/
         }
 
         /// Procesa la imagen pasada por parametro mediante un kernel, y retorna la imagen resultante.
         /// </summary>
-        /// <param name="image">La imagen a la cual se le va a plicar el filtro.</param>
+        /// <param name="image">La imagen a la cual se le va aplicar el filtro.</param>
         /// <returns>La imagen con el filtro aplicado.</returns>
         public IPicture Filter(IPicture image)
         {
